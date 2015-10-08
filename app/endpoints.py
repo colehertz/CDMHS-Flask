@@ -30,6 +30,18 @@ def get_password(email):
 def unauthorized():
     return make_response(jsonify({'error': 'unauthorized'}), 401)
 
+@app.route('/getCookie')
+def getCookie():
+	data = {"login_name":"TEMP", "password":"TEMP","event.login.x":"0","event.login.y":"0",
+	"redirect":"", "forward":"", "login_form_reverse":"", "form_data_id":"62358770601146624","sort":"",
+	"reverse":"","login_form_sort":"","event_override":"","login_form_filter":"", "login_form_letter":"", 
+	"return_url":"1443746256092", "login_form_page_index":"", "login_form_page_item_count":""}
+	r = requests.post("https://cdm.schoolloop.com/portal/login?etarget=login_form", data=data, allow_redirects=False)
+	print r.history
+	print r.status_code
+	print r.headers
+	return "yesss"
+
 
 @app.route('/')
 @app.route('/index')
